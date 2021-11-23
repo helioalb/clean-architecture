@@ -6,7 +6,7 @@ export default class CPF {
     }
 
     private extractCPFDigits(cpf: string): Array<number> {
-        const cpfWithoutMask = cpf.replace(/\./g, '').replace('-', '');
+        const cpfWithoutMask = cpf.replace(/\./g, '').replace('-', '').replace(/ /g, '');
         return cpfWithoutMask.split('').map(char => parseInt(char));
     }
 

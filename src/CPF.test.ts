@@ -19,3 +19,7 @@ test('CPF abcdefghij is invalid', () => {
 test('CPF 935a411b347c80 is invalid', () => {
     expect(new CPF('935a411b347c80').isValid()).toBeFalsy();
 });
+
+test('CPF 935 411 347 80 is valid', () => {
+    expect(new CPF('935 411 347 80').isValid()).toBeTruthy();
+});

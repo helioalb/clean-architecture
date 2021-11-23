@@ -1,0 +1,32 @@
+{
+  "name": "clean-architecture",
+  "version": "1.0.0",
+  "description": "Clean code and clean architecture",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "tsc && jest dist/ --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helioalb/clean-architecture.git"
+  },
+  "keywords": [
+    "clean",
+    "code",
+    "architecture"
+  ],
+  "author": "Helio Albano de Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/helioalb/clean-architecture/issues"
+  },
+  "homepage": "https://github.com/helioalb/clean-architecture#readme",
+  "dependencies": {
+    "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "jest": "^27.3.1"
+  }
+}

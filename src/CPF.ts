@@ -50,7 +50,7 @@ export default class CPF {
         return new CheckDigits(first, second);
     }
 
-    calculateVerificatonNumber(sum: number): number {
+    private calculateVerificatonNumber(sum: number): number {
         const mod = (sum % 11);
 
         return (mod < 2) ?  0 : 11 - mod;

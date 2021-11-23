@@ -26,7 +26,7 @@ export default class Order {
 
     discount(): number {
         if (!this.coupon) return 0;
-        return this.totalAmountWithoutDiscount() * this.coupon.discount;
+        return this.coupon.calculateDiscount(this.totalAmountWithoutDiscount());
     }
 
     private totalAmountWithoutDiscount(): number {

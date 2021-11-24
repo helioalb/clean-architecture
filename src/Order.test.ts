@@ -40,3 +40,15 @@ test('Add discount coupon', () => {
     order.addCoupon(new Coupon('DESCONTO10', 0.1));
     expect(order.totalAmount()).toBe(9);
 });
+
+test('Doesnt apply expired coupon', () => {
+    const validCPF = new CPF('935.411.347-80');
+    const order = new Order(validCPF);
+    order.addItem(new Item(1, 'Caixa de lapis', 10), 1);
+    expect(order.totalAmount()).toBe(10);
+    const expirationAt = new Date();
+    expirationAt.setDate(expirationAt.getDate() - 1);
+    const coupon = new Coupon('DESCONTO10', 0.1, expirationAt);
+    order.addCoupon(coupon);
+    expect(order.totalAmount()).toBe(10);
+});

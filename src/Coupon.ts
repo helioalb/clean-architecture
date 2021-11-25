@@ -13,7 +13,7 @@ export default class Coupon {
     }
 
     calculateDiscount(total: number): number {
-        if (this.isExpired()) return total;
+        if (this.isExpired()) return 0;
         return total * this.discount;
     }
 }

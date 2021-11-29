@@ -1,5 +1,5 @@
-import Item from "./Item";
-import OrderItem from "./OrderItem";
+import Item from "../src/Item";
+import OrderItem from "../src/OrderItem";
 
 test('Creation of OrderItem', () => {
     const item = new Item(1, 'Livro', 5.00);

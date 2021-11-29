@@ -1,4 +1,4 @@
-import CPF from './CPF';
+import CPF from '../src/CPF';
 
 test('CPF 111.111.111-11 is invalid', () => {
     expect(new CPF('111.111.111-11').isValid()).toBeFalsy();

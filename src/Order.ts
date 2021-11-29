@@ -4,12 +4,14 @@ import Item from "./Item";
 import OrderItem from "./OrderItem";
 
 export default class Order {
-    private orderItems: Array<OrderItem>;
-    private coupon: Coupon | undefined;
+    private orderItems: OrderItem[];
+    private coupon?: Coupon;
+    private issueDate: Date;
 
-    constructor(cpf: CPF) {
+    constructor(cpf: CPF, issueDate: Date = new Date()) {
         if (!cpf.isValid()) throw new Error('CPF inválido');
         this.orderItems = [];
+        this.issueDate = issueDate;
     }
 
     addItem(item: Item, quantity: number): void {
@@ -26,6 +28,7 @@ export default class Order {
 
     discount(): number {
         if (!this.coupon) return 0;
+        if (this.coupon.isExpired(this.issueDate)) return 0;
         return this.coupon.calculateDiscount(this.totalAmountWithoutDiscount());
     }
 

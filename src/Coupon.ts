@@ -1,19 +1,16 @@
 export default class Coupon {
-    private expiresAt: Date | undefined;
+    private expirationDate?: Date;
 
-    constructor(readonly description: string, readonly discount: number,
-        expiresAt: Date | undefined = undefined) {
-        this.expiresAt = expiresAt;
+    constructor(readonly description: string, readonly discount: number, expirationDate?: Date) {
+        this.expirationDate = expirationDate;
     }
 
-    isExpired(): boolean {
-        if (!this.expiresAt) return false;
-        const today = new Date();
-        return today.getTime() > this.expiresAt.getTime();
+    isExpired(today: Date = new Date()): boolean {
+        if (!this.expirationDate) return false;
+        return today.getTime() > this.expirationDate.getTime();
     }
 
     calculateDiscount(total: number): number {
-        if (this.isExpired()) return 0;
         return total * this.discount;
     }
 }

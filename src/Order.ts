@@ -16,7 +16,7 @@ export default class Order {
     }
 
     addItem(item: Item, quantity: number): void {
-        this.orderItems.push(new OrderItem(item, quantity));
+        this.orderItems.push(new OrderItem(item.id, item.price, quantity));
     }
 
     addCoupon(coupon: Coupon) {
@@ -24,16 +24,16 @@ export default class Order {
     }
 
     totalAmount(): number {
-        return this.totalAmountWithoutDiscount() - this.discount();
+        return this.total() - this.discount();
     }
 
     discount(): number {
         if (!this.coupon) return 0;
         if (this.coupon.isExpired(this.issueDate)) return 0;
-        return this.coupon.calculateDiscount(this.totalAmountWithoutDiscount());
+        return this.coupon.calculateDiscount(this.total());
     }
 
-    private totalAmountWithoutDiscount(): number {
+    private total(): number {
         return this.orderItems
                     .map(orderItem => orderItem.getTotal())
                     .reduce((semiTotal, sum) => semiTotal + sum, 0);

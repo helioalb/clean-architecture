@@ -1,5 +1,4 @@
-import Item from "../src/Item";
-import OrderItem from "../src/OrderItem";
+import OrderItem from "../../src/domain/entity/OrderItem";
 
 let orderItem: OrderItem;
 

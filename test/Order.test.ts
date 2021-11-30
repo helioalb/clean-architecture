@@ -35,21 +35,20 @@ test('Add three items to Order', () => {
 
 test('Add discount coupon', () => {
     order.addItem(new Item(1,  'Papelaria', 'Caixa de lapis', 10), 1);
-    order.addCoupon(new Coupon('DESCONTO10', 0.1));
+    order.addCoupon(new Coupon('DESCONTO10', 10));
     expect(order.totalAmount()).toBe(9);
 });
 
 test('Doesnt apply expired coupon', () => {
     const couponExpirationDate = new Date('2020-01-01');
     order.addItem(new Item(1, 'Papelaria', 'Caixa de lapis', 10), 1);
-    order.addCoupon(new Coupon('DESCONTO10', 0.1, couponExpirationDate));
+    order.addCoupon(new Coupon('DESCONTO10', 10, couponExpirationDate));
     expect(order.totalAmount()).toBe(10);
 });
 
 test('Apply coupon when it is not expired', () => {
     const couponExpirationDate = new Date('2020-01-15');
     order.addItem(new Item(1, 'Papelaria', 'Caixa de lapis', 10), 1);
-    expect(order.totalAmount()).toBe(10);
-    order.addCoupon(new Coupon('DESCONTO10', 0.1, couponExpirationDate));
+    order.addCoupon(new Coupon('DESCONTO10', 10, couponExpirationDate));
     expect(order.totalAmount()).toBe(9);
 });

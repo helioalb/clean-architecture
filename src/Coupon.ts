@@ -11,6 +11,6 @@ export default class Coupon {
     }
 
     calculateDiscount(total: number): number {
-        return total * this.discount;
+        return total * this.discount / 100;
     }
 }

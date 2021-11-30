@@ -1,7 +1,7 @@
-import Coupon from "./Coupon";
-import CPF from "./CPF";
-import Item from "./Item";
-import OrderItem from "./OrderItem";
+import Coupon from './Coupon';
+import CPF from './CPF';
+import Item from './Item';
+import OrderItem from './OrderItem';
 
 export default class Order {
     private orderItems: OrderItem[];

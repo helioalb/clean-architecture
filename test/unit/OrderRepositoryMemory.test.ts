@@ -1,5 +1,5 @@
-import Order from "../../src/domain/entity/Order"
-import OrderRepositoryMemory from "../../src/infra/repository/memory/OrderRepositoryMemory";
+import Order from '../../src/domain/entity/Order'
+import OrderRepositoryMemory from '../../src/infra/repository/memory/OrderRepositoryMemory';
 
 test('save and order', () => {
     const orderRepository = new OrderRepositoryMemory();

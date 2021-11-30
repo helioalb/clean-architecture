@@ -1,4 +1,4 @@
-import Item from "./Item";
+import Item from './Item';
 
 export default class OrderItem {
     constructor(readonly itemId: number, readonly itemPrice: number,

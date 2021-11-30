@@ -20,6 +20,7 @@ export default class Order {
     }
 
     addCoupon(coupon: Coupon) {
+        if (coupon.isExpired(this.issueDate)) return;
         this.coupon = coupon;
     }
 
@@ -29,7 +30,6 @@ export default class Order {
 
     discount(): number {
         if (!this.coupon) return 0;
-        if (this.coupon.isExpired(this.issueDate)) return 0;
         return this.coupon.calculateDiscount(this.total());
     }
 

@@ -4,26 +4,26 @@ import Item from "../src/Item";
 import Order from "../src/Order";
 
 test('Order with invalid CPF', () => {
-    const cpf = new CPF('11111111111');
+    const invalidCPF = '11111111111';
     expect(() => {
-        new Order(cpf);
+        new Order(invalidCPF);
     }).toThrowError();
 });
 
 test('Order with valid CPF', () => {
-    const validCPF = new CPF('935.411.347-80');
+    const validCPF = '935.411.347-80';
     const order = new Order(validCPF)
     expect(order).toBeDefined();
 });
 
 test('Zero items in Order', () => {
-    const validCPF = new CPF('935.411.347-80');
+    const validCPF = '935.411.347-80';
     const order = new Order(validCPF);
     expect(order.totalAmount()).toBe(0);
 });
 
 test('Add three items to Order', () => {
-    const validCPF = new CPF('935.411.347-80');
+    const validCPF = '935.411.347-80';
     const order = new Order(validCPF);
     order.addItem(new Item(1, 'Caderno', 2.00), 1);
     order.addItem(new Item(2, 'Lapis', 1.00), 2);
@@ -32,7 +32,7 @@ test('Add three items to Order', () => {
 });
 
 test('Add discount coupon', () => {
-    const validCPF = new CPF('935.411.347-80');
+    const validCPF = '935.411.347-80';
     const order = new Order(validCPF);
     order.addItem(new Item(1, 'Caixa de lapis', 10), 1);
     expect(order.totalAmount()).toBe(10);
@@ -41,7 +41,7 @@ test('Add discount coupon', () => {
 });
 
 test('Doesnt apply expired coupon', () => {
-    const validCPF = new CPF('935.411.347-80');
+    const validCPF = '935.411.347-80';
     const issueDate = new Date('2020-01-15')
     const order = new Order(validCPF, issueDate);
     order.addItem(new Item(1, 'Caixa de lapis', 10), 1);
@@ -52,7 +52,7 @@ test('Doesnt apply expired coupon', () => {
 });
 
 test('Apply coupon when it is not expired', () => {
-    const validCPF = new CPF('935.411.347-80');
+    const validCPF = '935.411.347-80';
     const issueDate = new Date('2020-01-01')
     const order = new Order(validCPF, issueDate);
     order.addItem(new Item(1, 'Caixa de lapis', 10), 1);

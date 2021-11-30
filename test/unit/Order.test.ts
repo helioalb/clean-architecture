@@ -1,7 +1,7 @@
-import Coupon from "../src/Coupon";
-import CPF from "../src/CPF"
-import Item from "../src/Item";
-import Order from "../src/Order";
+import Coupon from '../../src/domain/entity/Coupon';
+import CPF from '../../src/domain/entity/CPF'
+import Item from '../../src/domain/entity/Item';
+import Order from '../../src/domain/entity/Order';
 
 let order: Order;
 

@@ -3,6 +3,7 @@ export default class CPF {
 
     constructor (cpf: string) {
         this.cpfDigits = this.extractCPFDigits(cpf);
+        if (!this.isValid()) throw new Error('Invalid CPF');
     }
 
     private extractCPFDigits(cpf: string): Array<number> {

@@ -7,9 +7,10 @@ export default class Order {
     private orderItems: OrderItem[];
     private coupon?: Coupon;
     private issueDate: Date;
+    private cpf: CPF;
 
-    constructor(cpf: CPF, issueDate: Date = new Date()) {
-        if (!cpf.isValid()) throw new Error('CPF inválido');
+    constructor(cpf: string, issueDate: Date = new Date()) {
+        this.cpf = new CPF(cpf);
         this.orderItems = [];
         this.issueDate = issueDate;
     }

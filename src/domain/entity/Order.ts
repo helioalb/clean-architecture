@@ -1,5 +1,6 @@
 import Coupon from './Coupon';
 import CPF from './CPF';
+import FreightCalculator from './FreightCalculator';
 import Item from './Item';
 import OrderItem from './OrderItem';
 
@@ -8,14 +9,19 @@ export default class Order {
     private coupon?: Coupon;
     private issueDate: Date;
     private cpf: CPF;
+    private freightCalculator: FreightCalculator;
+    private freight: number;
 
-    constructor(cpf: string, issueDate: Date = new Date()) {
+    constructor(cpf: string, freightCalculator: FreightCalculator, issueDate: Date = new Date()) {
         this.cpf = new CPF(cpf);
         this.orderItems = [];
         this.issueDate = issueDate;
+        this.freightCalculator = freightCalculator;
+        this.freight = 0;
     }
 
     addItem(item: Item, quantity: number): void {
+        this.freight += this.freightCalculator.calculate(item) * quantity;
         this.orderItems.push(new OrderItem(item.id, item.price, quantity));
     }
 
@@ -31,6 +37,10 @@ export default class Order {
     discount(): number {
         if (!this.coupon) return 0;
         return this.coupon.calculateDiscount(this.total());
+    }
+
+    getFreight(): number {
+        return this.freight;
     }
 
     private total(): number {

@@ -2,6 +2,7 @@ import ItemRepositoryMemory from '../../src/infra/repository/memory/ItemReposito
 import OrderRepositoryMemory from '../../src/infra/repository/memory/OrderRepositoryMemory';
 import PlaceOrder from '../../src/application/usecase/place_order/PlaceOrder';
 import Input from '../../src/application/usecase/place_order/dto/Input';
+import SimpleFreight from '../../src/domain/entity/SimpleFreight';
 
 test('Place an order', async () => {
     const input = new Input(
@@ -22,7 +23,9 @@ test('Place an order', async () => {
         ]
     );
 
-    const placeOrder = new PlaceOrder(new ItemRepositoryMemory(), new OrderRepositoryMemory());
+    const placeOrder = new PlaceOrder(new ItemRepositoryMemory(),
+                                      new OrderRepositoryMemory(),
+                                      new SimpleFreight(1000, 10));
     const output = await placeOrder.execute(input);
     expect(output.total).toBe(4.5);
 });

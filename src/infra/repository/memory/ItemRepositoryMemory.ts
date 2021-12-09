@@ -1,4 +1,5 @@
 import Item from '../../../domain/entity/Item';
+import Measure from '../../../domain/entity/Measure';
 import ItemRepository from '../../../domain/repository/ItemRepository';
 
 export default class ItemRepositoryMemory implements ItemRepository {
@@ -6,9 +7,9 @@ export default class ItemRepositoryMemory implements ItemRepository {
 
     constructor() {
         this.items = [
-            new Item(1, 'Papelaria', 'Caderno', 2.00),
-            new Item(2, 'Papelaria', 'Lapis', 1.00),
-            new Item(3, 'Papelaria', 'Borracha', 0.5)
+            new Item(1, 'Papelaria', 'Caderno', 2.00, new Measure(30, 30, 30, 1)),
+            new Item(2, 'Papelaria', 'Lapis', 1.00, new Measure(30, 30, 30, 1)),
+            new Item(3, 'Papelaria', 'Borracha', 0.5, new Measure(30, 30, 30, 1))
         ]
     }
 

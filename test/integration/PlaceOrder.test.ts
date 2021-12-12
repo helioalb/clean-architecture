@@ -31,4 +31,5 @@ test('Place an order', async () => {
                                       new SimpleFreight(1000, 10));
     const output = await placeOrder.execute(input);
     expect(output.total).toBe(4.5);
+    expect(output.code).not.toBe('')
 });

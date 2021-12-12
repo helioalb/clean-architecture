@@ -25,6 +25,6 @@ export default class PlaceOrder {
             order.addItem(item, orderItem.quantity);
         }
         this.orderRepository.save(order);
-        return new Output(order.totalAmount());
+        return new Output(order.getCode(), order.totalAmount());
     }
 }

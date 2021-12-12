@@ -1,5 +1,5 @@
+import Code from '../../src/domain/entity/Code';
 import Coupon from '../../src/domain/entity/Coupon';
-import CPF from '../../src/domain/entity/CPF'
 import FreightCalculator from '../../src/domain/entity/FreightCalculator';
 import Item from '../../src/domain/entity/Item';
 import Measure from '../../src/domain/entity/Measure';
@@ -61,4 +61,24 @@ test('Apply coupon when it is not expired', () => {
 test('Order with freight', () => {
     order.addItem(new Item(1, 'Casa', 'Geladeira', 2000.00, new Measure(200, 100, 50, 40)), 1);
     expect(order.getFreight()).toBe(400);
+});
+
+test ('Order existence of code', () => {
+    expect(order.hasCode()).toBeFalsy();
+});
+
+test ('setting of code when doesnt exists code', () => {
+    const code = Code.generateFrom(2021, '00000001');
+    order.setCode(code);
+    expect(order.getCode()).toBe('202100000002');
+});
+
+test ('setting of code when it already exists', () => {
+    let code = Code.generateFrom(2021, '00000001');
+    order.setCode(code);
+
+    code = Code.generateFrom(2022, '00000111');
+    order.setCode(code);
+
+    expect(order.getCode()).toBe('202100000002');
 });

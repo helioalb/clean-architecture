@@ -1,3 +1,3 @@
 export default class Output {
-    constructor(readonly total: number) {}
+    constructor(readonly code: string, readonly total: number) {}
 }

@@ -1,3 +1,4 @@
+import Code from './Code';
 import Coupon from './Coupon';
 import CPF from './CPF';
 import FreightCalculator from './FreightCalculator';
@@ -11,6 +12,7 @@ export default class Order {
     private cpf: CPF;
     private freightCalculator: FreightCalculator;
     private freight: number;
+    private code: Code | undefined;
 
     constructor(cpf: string, freightCalculator: FreightCalculator, issueDate: Date = new Date()) {
         this.cpf = new CPF(cpf);
@@ -41,6 +43,20 @@ export default class Order {
 
     getFreight(): number {
         return this.freight;
+    }
+
+    hasCode() {
+        return !!this.code;
+    }
+
+    setCode(code: Code): void {
+        if (this.code) return;
+        this.code = code;
+    }
+
+    getCode(): string {
+        if (!this.code) return '';
+        return this.code.getValue();
     }
 
     private total(): number {

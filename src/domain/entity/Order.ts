@@ -45,12 +45,8 @@ export default class Order {
         return this.freight;
     }
 
-    hasCode() {
-        return !!this.code;
-    }
-
     setCode(code: Code): void {
-        if (this.code) return;
+        if (!!this.code) return;
         this.code = code;
     }
 

@@ -63,10 +63,6 @@ test('Order with freight', () => {
     expect(order.getFreight()).toBe(400);
 });
 
-test ('Order existence of code', () => {
-    expect(order.hasCode()).toBeFalsy();
-});
-
 test ('setting of code when doesnt exists code', () => {
     const code = Code.generateFrom(2021, '00000001');
     order.setCode(code);
@@ -74,11 +70,7 @@ test ('setting of code when doesnt exists code', () => {
 });
 
 test ('setting of code when it already exists', () => {
-    let code = Code.generateFrom(2021, '00000001');
-    order.setCode(code);
-
-    code = Code.generateFrom(2022, '00000111');
-    order.setCode(code);
-
+    order.setCode(Code.generateFrom(2021, '00000001'));
+    order.setCode(Code.generateFrom(2022, '00000111'));
     expect(order.getCode()).toBe('202100000002');
 });

@@ -3,6 +3,7 @@ import FreightCalculator from '../../../domain/entity/FreightCalculator';
 import ItemRepository from '../../../domain/repository/ItemRepository';
 import Input from './dto/Imput';
 import Output from './dto/Output';
+import OutputAssembler from './dto/OutputAssembler';
 
 export default class FreightSimulation {
     constructor(readonly itemRepository: ItemRepository,
@@ -14,6 +15,6 @@ export default class FreightSimulation {
             const item = await this.itemRepository.findById(i.id);
             cart.addItem(item, i.quantity);
         }
-        return new Output(cart.getTotal(), cart.getFreight());
+        return OutputAssembler.assembly(cart);
     }
 }

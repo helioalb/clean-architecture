@@ -1,5 +1,4 @@
 import Coupon from '../../src/domain/entity/Coupon';
-import CPF from '../../src/domain/entity/CPF'
 import FreightCalculator from '../../src/domain/entity/FreightCalculator';
 import Item from '../../src/domain/entity/Item';
 import Measure from '../../src/domain/entity/Measure';
@@ -13,7 +12,8 @@ beforeEach(() => {
     const validCPF = '935.411.347-80';
     const issueDate = new Date('2020-01-15');
     freightCalculator = new SimpleFreight(1000, 10);
-    order = new Order(validCPF, freightCalculator, issueDate);
+    const sequence = 1;
+    order = new Order(validCPF, freightCalculator, issueDate, sequence);
 });
 
 test('Order with invalid CPF', () => {
@@ -61,4 +61,8 @@ test('Apply coupon when it is not expired', () => {
 test('Order with freight', () => {
     order.addItem(new Item(1, 'Casa', 'Geladeira', 2000.00, new Measure(200, 100, 50, 40)), 1);
     expect(order.getFreight()).toBe(400);
+});
+
+test ('order code', () => {
+    expect(order.getCode()).toBe('202000000001');
 });

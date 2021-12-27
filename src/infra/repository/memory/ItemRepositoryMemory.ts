@@ -7,9 +7,9 @@ export default class ItemRepositoryMemory implements ItemRepository {
 
     constructor() {
         this.items = [
-            new Item(1, 'Papelaria', 'Caderno', 2.00, new Measure(30, 30, 30, 1)),
-            new Item(2, 'Papelaria', 'Lapis', 1.00, new Measure(30, 30, 30, 1)),
-            new Item(3, 'Papelaria', 'Borracha', 0.5, new Measure(30, 30, 30, 1))
+            new Item(1, 'Música', 'CD', 30.00, new Measure(30, 30, 10, 1)),
+            new Item(2, 'Vídeo', 'DVD', 50.00, new Measure(20, 40, 10, 1)),
+            new Item(3, 'Vídeo', 'VHS', 10.00, new Measure(20, 40, 10, 1))
         ]
     }
 

@@ -23,6 +23,7 @@ export default class PlaceOrder {
         }
         for (let orderItem of input.orderItems) {
             const item = await this.itemRepository.findById(orderItem.itemId);
+            if (!item) throw new Error('Item not found');
             order.addItem(item, orderItem.quantity);
         }
         this.orderRepository.save(order);

@@ -5,12 +5,18 @@ import PlaceOrderOutput from './PlaceOrderOutput';
 import PlaceOrderInput from './PlaceOrderInput';
 import FreightCalculator from '../../../domain/entity/FreightCalculator';
 import CouponRepository from '../../../domain/repository/CouponRepository';
+import RepositoryFactory from '../../../domain/factory/RepositoryFactory';
 
 export default class PlaceOrder {
-    constructor(readonly itemRepository: ItemRepository,
-        readonly orderRepository: OrderRepository,
-        readonly couponRepository: CouponRepository,
-        readonly freightCalculator: FreightCalculator) {}
+    orderRepository: OrderRepository;
+    couponRepository: CouponRepository;
+    itemRepository: ItemRepository;
+
+    constructor(readonly repositoryFactory: RepositoryFactory, readonly freightCalculator: FreightCalculator) {
+        this.orderRepository = repositoryFactory.createOrderRepository();
+        this.couponRepository = repositoryFactory.createCouponRepository();
+        this.itemRepository = repositoryFactory.createItemRepository();
+    }
 
     async execute(input: PlaceOrderInput): Promise<PlaceOrderOutput> {
         const sequence = await this.orderRepository.count() + 1;

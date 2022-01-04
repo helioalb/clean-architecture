@@ -7,17 +7,15 @@ import OrderItem from './OrderItem';
 
 export default class Order {
     private orderItems: OrderItem[];
-    private coupon?: Coupon;
-    private issueDate: Date;
+    coupon?: Coupon;
     private cpf: CPF;
     private freightCalculator: FreightCalculator;
     private freight: number;
     private code: OrderCode;
 
-    constructor(cpf: string, freightCalculator: FreightCalculator, issueDate: Date = new Date(), sequence: number = 1) {
+    constructor(cpf: string, freightCalculator: FreightCalculator, readonly issueDate: Date = new Date(), readonly sequence: number = 1) {
         this.cpf = new CPF(cpf);
         this.orderItems = [];
-        this.issueDate = issueDate;
         this.freightCalculator = freightCalculator;
         this.freight = 0;
         this.code = new OrderCode(issueDate, sequence);
@@ -48,6 +46,14 @@ export default class Order {
 
     getCode(): string {
         return this.code.value;
+    }
+
+    getCpf(): string {
+        return this.cpf.getValue();
+    }
+
+    getOrderItems(): OrderItem[] {
+        return this.orderItems;
     }
 
     private total(): number {

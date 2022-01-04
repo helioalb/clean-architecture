@@ -6,6 +6,10 @@ export default class CPF {
         if (!this.isValid()) throw new Error('Invalid CPF');
     }
 
+    getValue(): string {
+        return this.cpfDigits.join('');
+    }
+
     private extractCPFDigits(cpf: string): Array<number> {
         const cpfWithoutMask = cpf.replace(/\./g, '').replace('-', '').replace(/ /g, '');
         return cpfWithoutMask.split('').map(char => parseInt(char));

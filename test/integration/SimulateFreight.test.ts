@@ -5,7 +5,7 @@ import PgPromiseConnectionAdapter from '../../src/infra/database/PgPromiseConnec
 import ItemRepositoryDatabase from '../../src/infra/repository/database/ItemRepositoryDatabase';
 
 test ('should simulate items freight', async () => {
-    const connection = new PgPromiseConnectionAdapter();
+    const connection = PgPromiseConnectionAdapter.getInstance();
     const itemRepository = new ItemRepositoryDatabase(connection);
     const freightCalculator = new SimpleFreight(1000, 10);
     const simulateFreight = new SimulateFreight(itemRepository, freightCalculator);

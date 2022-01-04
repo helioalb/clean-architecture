@@ -3,7 +3,7 @@ import PgPromiseConnectionAdapter from "../../src/infra/database/PgPromiseConnec
 import CouponRepositoryDatabase from "../../src/infra/repository/database/CouponRepositoryDatabase";
 
 test ('should validates a coupon', async () => {
-    const connection = new PgPromiseConnectionAdapter();
+    const connection = PgPromiseConnectionAdapter.getInstance();
     const couponRepository = new CouponRepositoryDatabase(connection);
     const validateCoupon = new ValidateCoupon(couponRepository);
     const isValid = await validateCoupon.execute('VALE20');

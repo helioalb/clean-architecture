@@ -7,7 +7,7 @@ import CouponRepositoryDatabase from '../../src/infra/repository/database/Coupon
 import OrderRepositoryDatabase from '../../src/infra/repository/database/OrderRepositoryDatabase';
 
 test('Place an order', async () => {
-    const connection = new PgPromiseConnectionAdapter();
+    const connection = PgPromiseConnectionAdapter.getInstance();
     const input = new PlaceOrderInput('93541134780', 'VALE20',
         [
             { itemId: 1, quantity: 1 },
